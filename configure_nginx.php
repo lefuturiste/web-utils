@@ -20,10 +20,8 @@ foreach ($config['modules'] as $moduleName => $moduleConfig) {
   $domains = array_map(fn ($d) => $d . '.' . $config['domain'], $domains);
   $serverName = implode(' ', $domains);
 
-  $rootPath = $appBasePath . '/' . $domains[0];
-
   $nginxConfig = $template;
-  $nginxConfig = str_replace('{{ROOT_PATH}}', $rootPath, $nginxConfig);
+  $nginxConfig = str_replace('{{ROOT_PATH}}', $appBasePath, $nginxConfig);
   $nginxConfig = str_replace('{{SERVER_NAME}}', $serverName, $nginxConfig);
   $nginxConfig = str_replace('{{PHP_SOCKET}}', $phpSocket, $nginxConfig);
 

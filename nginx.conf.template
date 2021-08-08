@@ -5,11 +5,41 @@ server {
   location / {
     try_files $uri $uri/ /index.php?$args;
   }
+  location /config.php {
+    return 404;
+  }
   location ~ \.php$ {
     fastcgi_pass unix:{{PHP_SOCKET}};
     fastcgi_split_path_info ^(.+\.php)(/.+)$;
     fastcgi_index index.php;
     include fastcgi_params;
     fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+  }
+  location ^~ /wp-admin {
+    return 403;
+  }
+  location ^~ /super-cool-page {
+    return 403;
+  }
+  location ^~ /load_config.php {
+    return 403;
+  }
+  location ^~ /config.php {
+    return 403;
+  }
+  location ^~ /config.example.php {
+    return 403;
+  }
+  location ^~ /utils.php {
+    return 403;
+  }
+  location ^~ /tmp {
+    return 403;
+  }
+  location ^~ /modules {
+    return 403;
+  }
+  location ^~ /configure_nginx.php {
+    return 403;
   }
 }
