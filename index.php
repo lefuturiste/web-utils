@@ -29,11 +29,13 @@ function generateHelp($selectedModule) {
 $modules = $config['modules'];
 $selectedModule = null;
 
-foreach ($modules as $key => $module) {
-  if (strpos($_SERVER['HTTP_HOST'], $key . '.') === 0) {
-    $selectedModule = $module;
-    $selectedModule['key'] = $key;
-    break;
+foreach ($modules as $moduleName => $module) {
+  foreach (array_merge([$moduleName], $module['alias'] ?? []) as $alias) {
+    if (strpos($_SERVER['HTTP_HOST'], $alias . '.') === 0) {
+      $selectedModule = $module;
+      $selectedModule['key'] = $moduleName;
+      break;
+    }
   }
 }
 
