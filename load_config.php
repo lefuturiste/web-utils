@@ -1,6 +1,14 @@
 <?php
 
+if (!file_exists('./config.php')) {
+  die('Config file not present');
+}
+
 $config = require('./config.php');
+
+if (!is_array($config)) {
+  die('Config must be an array');
+}
 
 // a basic validation of config keys
 if (!(isset($config['domain']) && strlen($config['domain']) > 0)) {

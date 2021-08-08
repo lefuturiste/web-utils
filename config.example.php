@@ -17,7 +17,9 @@ return [
     'quickupload' => [
       'auth' => true
     ],
-    'logator' => []
+    'logator' => [
+      'alias' => ['logme']
+    ]
   ],
   'auth' => [
     'root' => 'password'
