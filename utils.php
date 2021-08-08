@@ -36,3 +36,21 @@ function resumeRequest() {
     'at_unix_micro' => microtime()
   ];
 }
+
+function getFilesAsArray($path) {
+  $dirs = array_filter(glob($path . '/*'), 'is_file');
+  $dirs = array_map(function ($dirName) {
+    $compo = explode('/', $dirName);
+    return $compo[count($compo)-1];
+  }, $dirs);
+  return array_values($dirs);
+}
+
+function getDirsAsArray($path) {
+  $dirs = array_filter(glob($path . '/*'), 'is_dir');
+  $dirs = array_map(function ($dirName) {
+    $compo = explode('/', $dirName);
+    return $compo[count($compo)-1];
+  }, $dirs);
+  return array_values($dirs);
+}

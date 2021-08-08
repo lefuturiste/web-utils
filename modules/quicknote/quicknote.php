@@ -5,8 +5,29 @@ $path = __DIR__ . '/../../tmp/quicknotes';
 if (!file_exists($path)) {
   mkdir($path);
 }
+if (!file_exists($path . '/logs.txt')) {
+  file_put_contents($path . '/logs.txt', '');
+}
 
 $path = realpath($path);
+
+if ($_SERVER['REQUEST_URI'] === '/list') {
+  $msgs = explode("\n", file_get_contents($path . '/logs.txt'));
+  array_pop($msgs);
+  ?>
+  <h3>List of messages</h3>
+  <ul>
+  <?php
+  foreach ($msgs as $msg) {
+    ?>
+    <li><?= $msg ?></li>
+    <?php
+  }
+  ?>
+  </ul>
+  <?php
+  exit();
+}
 
 $message = '';
 

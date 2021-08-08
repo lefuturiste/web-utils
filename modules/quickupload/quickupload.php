@@ -11,6 +11,23 @@ function slugify($string){
   return strtolower(trim(preg_replace('/[^.A-Za-z0-9-]+/', '-', $string), '-'));
 }
 
+if ($_SERVER['REQUEST_URI'] === '/list') {
+  $files = getFilesAsArray($path);
+  ?>
+  <h3>List of uploaded files</h3>
+  <ul>
+  <?php
+  foreach ($files as $fileName) {
+    ?>
+    <li><a href="/file/<?= $fileName ?>"><?= $fileName ?></a></li>
+    <?php
+  }
+  ?>
+  </ul>
+  <?php
+  exit();
+}
+
 if (isset($_FILES['file'])) {
   $f = $_FILES['file'];
   copy($f['tmp_name'], $path . '/' . uniqid() . '_' . slugify($f['name']));
