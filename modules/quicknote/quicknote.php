@@ -40,6 +40,7 @@ if (isset($_GET['message'])) {
 }
 
 if (strlen($message) === 0) {
+  echo 'No message provided';
   exit();
 }
 
