@@ -54,3 +54,12 @@ function getDirsAsArray($path) {
   }, $dirs);
   return array_values($dirs);
 }
+
+function deleteAllFiles($path) {
+  $count = 0;
+  foreach (getFilesAsArray($path) as $file) {
+    unlink($path . '/' . $file);
+    $count++;
+  }
+  return $count;
+}

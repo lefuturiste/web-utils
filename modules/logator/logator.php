@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_URI'] === '/') {
 }
 
 if ($_SERVER['REQUEST_URI'] === '/loggers') {
-  
   echo json_encode([
     'success' => true,
     'data' => getDirsAsArray($logAt)
@@ -26,12 +25,13 @@ if ($_SERVER['REQUEST_URI'] === '/loggers') {
   exit();
 }
 
-if (strpos($_SERVER['REQUEST_URI'], '/logger-details') === 0) {
+if (strpos($_SERVER['REQUEST_URI'], '/logger') === 0) {
   if (!isset($_GET['id']) || $_GET['id'] === '') {
     echo json_encode([
       'success' => false,
       'message' => 'Bro, I need an ID bro. Why are you doing that to me?'
     ]);
+    exit();
   }
   $id = preg_replace('/[^0-9a-zA-Z]/', '', $_GET['id']);
   $path = $logAt . '/' . $id;
@@ -40,6 +40,27 @@ if (strpos($_SERVER['REQUEST_URI'], '/logger-details') === 0) {
     echo json_encode([
       'success' => false,
       'message' => 'Bruh id did not find'
+    ]);
+    exit();
+  }
+
+  if (isset($_GET['delete']) && ($_GET['delete'] === 'true' || $_GET['delete'] === 'yes')) {
+    $count = deleteAllFiles($path);
+    rmdir($path);
+    echo json_encode([
+      'success' => true,
+      'message' => 'Logger deleted!',
+      'records_deleted_count' => $count
+    ]);
+    exit();
+  }
+
+  if (isset($_GET['reset']) && ($_GET['reset'] === 'true' || $_GET['reset'] === 'yes')) {  
+    $count = deleteAllFiles($path);
+    echo json_encode([
+      'success' => true,
+      'message' => 'Logger reseted!',
+      'records_deleted_count' => $count
     ]);
     exit();
   }
