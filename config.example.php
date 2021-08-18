@@ -19,7 +19,8 @@ return [
     ],
     'logator' => [
       'alias' => ['logme']
-    ]
+    ],
+    'hash' => []
   ],
   'auth' => [
     'root' => 'password'
