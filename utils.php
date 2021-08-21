@@ -5,7 +5,8 @@ function generateRandomString($length = 10, $contains = ['upper', 'lower', 'digi
      'digit' => '0123456789',
      'lower' => 'abcdefghijklmnopqrstuvwxyz',
      'upper' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-     'special' => '!#$%&()*+,-.:;<=>?@[]'
+     'special' => '!#$%&()*+,-.:;<=>?@[]',
+     'hex' => '0123456789abcdef'
   ];
   $characters = '';
   foreach ($contains as $c) {

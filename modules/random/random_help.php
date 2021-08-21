@@ -13,6 +13,10 @@ return [
     [
       'name' => 'Change length',
       'path' => '/?length=20'
+    ],
+    [
+      'name' => 'Only hex',
+      'path' => '/?length=16&contains=hex'
     ]
   ],
   'append' => function () {
