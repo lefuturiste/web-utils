@@ -16,7 +16,8 @@ return [
       'auth' => true
     ],
     'quickupload' => [
-      'auth' => true
+      'auth' => true,
+      'alias' => ['share']
     ],
     'logator' => [
       'alias' => ['logme']

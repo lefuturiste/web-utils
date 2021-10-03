@@ -5,6 +5,7 @@ server {
   location / {
     try_files $uri $uri/ /index.php?$args;
   }
+  {{CUSTOM_CONFIG}}
   location ^~ /wp-admin {
     return 403;
   }
