@@ -3,6 +3,26 @@
 require('utils.php');
 require('load_config.php');
 
+/* Disable function */
+if (file_exists('./DISABLE')) {
+  header('X-Disabled: Yes');
+  http_response_code(503);
+  ?>
+  <p>503</p>
+  <iframe
+    width="560" height="315" frameborder="0"
+    src="https://www.youtube-nocookie.com/embed/D1rlGA_UGrY?autoplay=1&controls=0"
+    allow="autoplay;encrypted-media;picture-in-picture" allowfullscreen>
+  </iframe>
+  <?php
+  exit();
+}
+if ($_SERVER['REQUEST_URI'] === '/special-disable?token=' . $config['special_token']) {
+  file_put_contents('./DISABLE', '1');
+  echo "Disabled successfully";
+  exit();
+}
+
 function generateHelp($selectedModule) {
   if (strpos($_SERVER['REQUEST_URI'], '/help') === false) {
     return;

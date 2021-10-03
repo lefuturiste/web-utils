@@ -32,5 +32,6 @@ return [
   ],
   'auth' => [
     'root' => 'password'
-  ]
+  ],
+  'special_token' => 'password'
 ];
