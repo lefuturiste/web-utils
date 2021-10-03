@@ -3,6 +3,7 @@
 return [
   'domain' => 'lefuturiste.fr',
   'modules' => [
+    'modules' => [],
     'random' => [],
     'date' => [
       'alias' => ['printdate']
