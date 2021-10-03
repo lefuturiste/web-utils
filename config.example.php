@@ -23,7 +23,8 @@ return [
     'hash' => [],
     'baseconverter' => [
       'alias' => ['encode', 'decode']
-    ]
+    ],
+    'uuid' => []
   ],
   'auth' => [
     'root' => 'password'
