@@ -64,3 +64,27 @@ function deleteAllFiles($path) {
   }
   return $count;
 }
+
+function askAuth($authConfig) {
+  if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']))
+  {
+    header("WWW-Authenticate: Basic realm=\"You need to provide user and passwd\"");
+    http_response_code(401);
+    echo "Authentification Required";
+    exit();
+  }
+  $providedUsername = $_SERVER['PHP_AUTH_USER'];
+  $providedPassword = $_SERVER['PHP_AUTH_PW'];
+  $found = false;
+  foreach ($authConfig as $username => $password) {
+    if ($username === $providedUsername && $password == $providedPassword) {
+      $found = true;
+    }
+  }
+  if (!$found) {
+    header("WWW-Authenticate: Basic realm=\"Invalid auth\"");
+    http_response_code(401);
+    echo "Invalid authentification, try again";
+    exit();
+  }
+}

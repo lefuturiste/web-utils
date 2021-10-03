@@ -25,7 +25,10 @@ return [
     'baseconverter' => [
       'alias' => ['encode', 'decode']
     ],
-    'uuid' => []
+    'uuid' => [],
+    'urlshortner' => [
+      'alias' => ['u', 'url']
+    ]
   ],
   'auth' => [
     'root' => 'password'
