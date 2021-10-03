@@ -20,7 +20,10 @@ return [
     'logator' => [
       'alias' => ['logme']
     ],
-    'hash' => []
+    'hash' => [],
+    'baseconverter' => [
+      'alias' => ['encode', 'decode']
+    ]
   ],
   'auth' => [
     'root' => 'password'
