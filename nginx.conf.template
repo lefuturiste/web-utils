@@ -2,10 +2,12 @@ server {
   index index.html index.php;
   root {{ROOT_PATH}};
   server_name {{SERVER_NAME}};
+  
+{{CUSTOM_CONFIG}}
+
   location / {
     try_files $uri $uri/ /index.php?$args;
   }
-  {{CUSTOM_CONFIG}}
   location ^~ /wp-admin {
     return 403;
   }
