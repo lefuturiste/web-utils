@@ -13,7 +13,11 @@ function generateHelp($selectedModule) {
   }
   $helpConfig = require($additionalHelpPath);
 
-  echo "<h1>Help for module \"$selectedModule\"</h1>";
+  $moduleTitle = $helpConfig['title'] ?? $selectedModule;
+  echo "<h1>Help for module \"$moduleTitle\"</h1>";
+  if (isset($helpConfig['description'])) {
+    echo "<h3>" . $helpConfig['description'] . "</h3>";
+  }
   echo "  <ul>";
   foreach ($helpConfig['actions'] as $action) {
     ?>
