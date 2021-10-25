@@ -52,7 +52,7 @@ if (strpos($_SERVER['REQUEST_URI'], '/admin') === 0) {
       http_response_code(400);
       exit();
     }
-    $urls = array_filter([], fn ($u) => $u['slug'] !== $_GET['slug']);
+    $urls = array_filter($urls, fn ($u) => $u['slug'] !== $_GET['slug']);
     echo "The urls with this slug were deleted";
 
     saveUrls($urls);
